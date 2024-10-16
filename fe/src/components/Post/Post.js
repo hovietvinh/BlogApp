@@ -1,20 +1,21 @@
 
-
-function Post() {
+function Post({data}) {
+    console.log("heare");
+    // console.log(data,1);
     return (
         <>
             <div className="post">
                 <div className="img">
-                    <img src="https://techcrunch.com/wp-content/uploads/2024/07/GettyImages-1917904267.jpg?resize=2048,1366"/>
+                    <img src={data.cover}/>
 
                 </div>
                 <div className="texts">
-                <h2>20VC closes new $400M fund to ‘make Europe great again,’ says Harry Stebbings</h2>
+                <h2>{data.title}</h2>
                 <p className="info">
-                    <a className="author">Vinh</a>
+                    <a className="author">{data.user.username}</a>
                     <time >12-10-2024 20:32</time>
                 </p>
-                <p className="summary">The letter argues that Perplexity has been “unjustly enriched” by using the publisher’s “expressive, carefully written and researched, and edited journalism without a license,” which it says violates copyright laws.</p>
+                <p className="summary">{data.summary}</p>
                 </div>
         
             </div>

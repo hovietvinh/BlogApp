@@ -40,8 +40,53 @@ const loginUserApi = async(data)=>{
     }
 }
 
+const getProfileUserApi = async()=>{
+    try {
+        const res  = await fetch(url+"/api/users/profile",{
+            method:"get",
+            credentials:"include"
+        })
+        return res;
+    } catch (error) {
+        return {
+            code:400,
+            message:"Error in fetch"
+        }
+    }
+}
+
+const createPostApi = async(data)=>{
+    try {
+        const res  = await fetch(url+"/api/posts/create",{
+            method:"post",
+            credentials:"include",
+            body:data,
+           
+        })
+        return res;
+    } catch (error) {
+        return {
+            code:400,
+            message:"Error in fetch"
+        }
+    }
+}
+const getPostsApi  = async ()=>{
+    try {
+        const res = await fetch(url+"/api/posts");
+        return res;
+    } catch (error) {
+        return {
+            code:400,
+            message:"Error in fetch"
+        }
+    }
+}
 
 export {
     registerUserApi,
     loginUserApi,
+    getProfileUserApi,
+    createPostApi,
+    getPostsApi
 }

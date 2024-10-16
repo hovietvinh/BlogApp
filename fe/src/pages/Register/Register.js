@@ -30,7 +30,7 @@ function Register() {
     return (
         <>
             
-            <Form onFinish={handleRegister} form={form} className='form'>
+            <Form onFinish={handleRegister} form={form} className='formRegister'>
                 <h1>Register</h1>
                 <Form.Item name="username">
                     <Input placeholder='username'/>

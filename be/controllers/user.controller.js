@@ -23,7 +23,7 @@ module.exports.register = async(req,res)=>{
             message:"Register successfully!"
         })
     } catch (error) {
-        res.json({
+        res.status(400).json({
             code:400,
             message:"Error in server"
         })
@@ -49,7 +49,7 @@ module.exports.login = async(req,res)=>{
                username:exist.username,
                _id:exist._id             
             }
-            console.log(2);
+   
             const token = jwt.sign(
                 payload,
                 process.env.JWT_SECRET,
@@ -58,13 +58,31 @@ module.exports.login = async(req,res)=>{
                 }
             )
             res.cookie("token",token).json({
-                message:"Login successfully!"
+                message:"Login successfully!",
+                data:payload
             })
         }
         
     } catch (error) {
         res.status(400).json({
             
+            message:"Error in server"
+        })
+    }
+}
+
+module.exports.profile = async(req,res)=>{
+    try {
+        const {token} = req.cookies
+        const decoded = jwt.verify(token,process.env.JWT_SECRET)
+    
+        return res.status(200).json({
+            data:decoded
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            code:400,
             message:"Error in server"
         })
     }
