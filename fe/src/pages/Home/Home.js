@@ -1,3 +1,4 @@
+import { Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Post from '../../components/Post/Post';
@@ -23,9 +24,16 @@ function Home() {
 
     return (
         <>  
-            {data.length>0 && data.map(item=>(
-                <Post data={item} key={item._id}/>
+        
+            <div className="spin-wrapper">
+                <Spin spinning={data.length === 0} tip="Waiting...">
+                
+                </Spin>
+            </div>
 
+            {/* Display posts when data is available */}
+            {data.length > 0 && data.map(item => (
+                <Post data={item} key={item._id} />
             ))}
             
         </>

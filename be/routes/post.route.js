@@ -8,5 +8,7 @@ const middlewares = require("../middlewares/user.middleware.js")
 
 router.post("/create",middlewares.check,upload.single('file'),controller.create);
 router.get("/",controller.index);
+router.get("/:id",controller.detail);
+router.patch("/update/:id",middlewares.check,upload.single('file'),controller.update);
 
 module.exports = router

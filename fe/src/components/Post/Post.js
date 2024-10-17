@@ -1,10 +1,12 @@
-
+import {formatISO9075} from "date-fns"
+import {Link} from "react-router-dom"
 function Post({data}) {
-    console.log("heare");
+    // console.log("heare");
     // console.log(data,1);
+    // console.log(data);
     return (
         <>
-            <div className="post">
+            <Link className="post" to={`posts/${data._id}`}>
                 <div className="img">
                     <img src={data.cover}/>
 
@@ -13,12 +15,12 @@ function Post({data}) {
                 <h2>{data.title}</h2>
                 <p className="info">
                     <a className="author">{data.user.username}</a>
-                    <time >12-10-2024 20:32</time>
+                    <time >{formatISO9075(new Date(data.createdAt))}</time>
                 </p>
                 <p className="summary">{data.summary}</p>
                 </div>
         
-            </div>
+            </Link>
         </>
     );
 }

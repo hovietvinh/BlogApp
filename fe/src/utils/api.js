@@ -82,11 +82,39 @@ const getPostsApi  = async ()=>{
         }
     }
 }
+const detailPostApi = async (id)=>{
+    try {
+        const res = await fetch(url + "/api/posts/"+id)        
+        return res;
+    } catch (error) {
+        return {
+            code:400,
+            message:"Error in fetch"
+        }
+    }
+}
+const updatePostApi = async(data,id)=>{
+    try {
+        const res  = await fetch(url+"/api/posts/update/"+id,{
+            method:"PATCH",
+            credentials:"include",
+            body:data,
+        })
+        return res;
+    } catch (error) {
+        return {
+            code:400,
+            message:"Error in fetch"
+        }
+    }
+}
 
 export {
     registerUserApi,
     loginUserApi,
     getProfileUserApi,
     createPostApi,
-    getPostsApi
+    getPostsApi,
+    detailPostApi,
+    updatePostApi
 }
